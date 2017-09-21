@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		
+		<script type="text/javascript" src="js/zepto.js" ></script>
+		<script type="text/javascript" src="js/touch.js" ></script>
+		<style>
+			
+			html{
+				margin: 0;
+				height: 100%;
+			    /*width: 400%;*/
+			}
+			div,p,body{
+				box-sizing: border-box;
+			}
+			body{
+				height: 100%;
+				margin: 0;
+				overflow: hidden;
+			}
+			p{
+				margin: 0;
+			}
+			.box{
+				height: 100%;
+				width: 100%;
+				display: flex;
+			}
+			.box p{
+				width: 100%;
+				border: 1px solid black;
+				height: 100%;
+				flex-shrink: 0;
+			}
+			img{
+				height: 72px;
+				width: 128px;
+				margin:  30% 30%;
+				z-index: 1;
+			}
+			
+		</style>
+		
+		<script>
+			
+			$(function(){
+				
+				document.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+				})
+				
+				var n = 0;
+				$("#box").on("swipeLeft",function(){
+					n++;
+					if(n>=$("p").length){
+						n=$("p").length-1;
+					}
+					$("#box").css("transform","translate3d(-"+n*100+"%,0,0)");
+				})
+				
+				$("#box").on("swipeRight",function(){
+					n--;
+					if(n<0){
+						n=0;
+					}
+					$("#box").css("transform","translate3d(-"+n*100+"%,0,0)");
+				})
+//					$("img").on("tap",function(){
+//						location.href = 'http://baidu.com';
+//					}
+			})
+			
+		</script>
+		
+	</head>
+	<body>
+		
+		<div class="box" id="box">
+			<p style="background-color: deepskyblue;"><img src="img/1.jpg" /></p>
+			<p style="background-color: deeppink;"><img src="img/2.jpg" /></p>
+			<p style="background-color: aquamarine;"><img src="img/3.jpg" /></p>
+			<p style="background-color: aqua;"><img src="img/5.jpg" /></p>
+		</div>
+		
+	</body>
+</html>
